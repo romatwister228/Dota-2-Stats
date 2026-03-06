@@ -143,11 +143,65 @@ async function loadMatches(steamId) {
     }
 }
 
+// --- Загрузка топ героев ---
+async function loadHeroes(steamId) {
+    const heroesList = document.getElementById('heroes-list');
+    try {
+        // Сначала получаем данные конкретного игрока
+        const res = await fetch(`https://api.opendota.com/api/players/${steamId}/heroes`);
+        const playerHeroes = await res.json();
+
+        // Берём топ-5 героев, на которых сыграл игрок
+        const top5 = playerHeroes.slice(0, 5);
+        heroesList.innerHTML = '';
+
+        if (top5.length === 0) {
+            heroesList.innerHTML = '<p>Нет данных о героях.</p>';
+            return;
+        }
+
+        // К сожалению, OpenDota отдает только ID героев.
+        // Чтобы получить их имена и картинки, нужно скачать справочник всех героев.
+        const allHeroesRes = await fetch('https://api.opendota.com/api/heroes');
+        const allHeroes = await allHeroesRes.json();
+
+        top5.forEach(ph => {
+            // Ищем полного героя по ID из списка всех
+            const heroInfo = allHeroes.find(h => h.id === parseInt(ph.hero_id));
+            if (!heroInfo) return;
+
+            // OpenDota картинки хранит по специфическому пути (тут мы формируем URL)
+            const heroNameShort = heroInfo.name.replace('npc_dota_hero_', '');
+            const imgUrl = `https://api.opendota.com/apps/dota2/images/dota_react/heroes/${heroNameShort}.png`;
+
+            // Вычисляем винрейт на этом герое
+            const winrate = ph.games > 0 ? Math.round((ph.win / ph.games) * 100) : 0;
+
+            const card = document.createElement('div');
+            card.classList.add('hero-card');
+            card.innerHTML = `
+                <img src="${imgUrl}" alt="${heroInfo.localized_name}">
+                <div class="hero-info">
+                    <h3>${heroInfo.localized_name}</h3>
+                    <p>Игр: ${ph.games}</p>
+                    <p>Winrate: <span class="${winrate >= 50 ? 'win' : 'loss'}">${winrate}%</span></p>
+                </div>
+            `;
+            heroesList.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error('Ошибка загрузки героев:', error);
+        heroesList.innerHTML = '<p>Не удалось загрузить героев.</p>';
+    }
+}
+
 // --- Слушатели событий ---
 searchBtn.addEventListener('click', () => {
     const steamId = searchInput.value.trim();
     if (steamId !== '') {
         loadPlayer(steamId);
+        loadHeroes(steamId); // Загружаем героев вместе с профилем
     }
 });
 
@@ -157,6 +211,7 @@ searchInput.addEventListener('keypress', (e) => {
         const steamId = searchInput.value.trim();
         if (steamId !== '') {
             loadPlayer(steamId);
+            loadHeroes(steamId); // Загружаем героев вместе с профилем
         }
     }
 });

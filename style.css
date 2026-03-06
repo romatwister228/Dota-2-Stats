@@ -207,8 +207,55 @@ tr:hover {
     font-weight: bold;
 }
 
+/* Утилиты */
 .hidden {
     display: none !important;
+}
+
+/* Герои (карточки) */
+#heroes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.hero-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 220px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid var(--accent-blue);
+    transition: transform 0.3s;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.hero-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--accent);
+}
+
+.hero-info {
+    padding: 1rem;
+}
+
+.hero-info h3 {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.hero-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
 footer {

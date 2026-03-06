@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota2 Player Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Dota2 Stats</h1>
+        <button onclick="document.body.classList.toggle('dark')">🌙 Тёмная тема</button>
+        <div class="controls">
+
+            <button data-tab="profile">Профиль</button>
+            <button data-tab="matches">Матчи</button>
+            <button data-tab="heroes">Герои</button>
+        </div>
+    </header>
+    <main>
+
+
+        <div class="search-block">
+            <input type="text" id="steam-id" placeholder="Введи Steam32 ID (например: 87278757)">
+            <button id="search-btn">Найти</button>
+        </div>
+
+
+        <section id="profile">
+            <div id="player-card">
+                <p class="placeholder" id="search-prompt">Введи Steam ID для поиска игрока</p>
+
+
+                <div id="player-info" class="hidden">
+                    <img id="player-avatar" src="" alt="Avatar">
+                    <h2 id="player-name">MisterTwister</h2>
+                    <p id="player-country">Ukraine</p>
+                </div>
+
+                <div id="player-stats" class="hidden">
+                    <div class="stat-item">
+                        <span class="stat-label">K/D</span>
+                        <span class="stat-value" id="stat-kd">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Winrate</span>
+                        <span class="stat-value" id="stat-winrate">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Время в игре</span>
+                        <span class="stat-value" id="stat-time">-</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="matches" class="hidden">
+            <h2>Последние матчи</h2>
+            <table id="matches-table">
+                <thead>
+                    <tr>
+                        <th>Герой</th>
+                        <th>Результат</th>
+                        <th>K/D/A</th>
+                        <th>Длительность</th>
+                    </tr>
+                </thead>
+                <tbody id="matches-body"></tbody>
+            </table>
+        </section>
+
+        <section id="heroes" class="hidden">
+            <h2>Топ герои</h2>
+            <div id="heroes-list"></div>
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

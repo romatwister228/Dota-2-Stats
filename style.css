@@ -1,0 +1,229 @@
+:root {
+    --bg-dark: #0f0f23;
+    --bg-card: #16213e;
+    --bg-card-hover: #1a1a3e;
+    --accent: #e94560;
+    --accent-blue: #0f3460;
+    --gold: #ffd700;
+    --text: #eee;
+    --text-muted: #888;
+    --success: #4ecca3;
+    --danger: #e94560;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--bg-card);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-blue);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--accent-blue);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.controls button:hover,
+.controls button.active {
+    background-color: var(--accent-blue);
+    border-color: var(--accent);
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.search-block {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.search-block input {
+    flex-grow: 1;
+    padding: 12px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-blue);
+    color: var(--text);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-block input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.search-block button {
+    padding: 12px 24px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-block button:hover {
+    background-color: #d83a54;
+}
+
+#player-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+#player-info {
+    margin-bottom: 1.5rem;
+}
+
+#player-info img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    margin-bottom: 1rem;
+}
+
+#player-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+}
+
+#player-country {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+#player-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    border-top: 1px solid var(--accent-blue);
+    padding-top: 1.5rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text);
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--bg-card);
+    padding-bottom: 0.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--accent-blue);
+    color: var(--text);
+    font-weight: bold;
+}
+
+tr {
+    border-bottom: 1px solid var(--bg-dark);
+}
+
+tr:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.win {
+    color: var(--success);
+    font-weight: bold;
+}
+
+.loss {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+body.light {
+    --bg-dark: #f0f2f5;
+    --bg-card: #ffffff;
+    --bg-card-hover: #e4e6eb;
+    --accent: #d32f2f;
+    --accent-blue: #1976d2;
+    --text: #333333;
+    --text-muted: #666666;
+}
